@@ -9,9 +9,7 @@ def index(request):
 
     num_books = Book.objects.all().count()
     num_instances = BookInstance.objects.all().count()
-
     num_instances_available = BookInstance.objects.filter(status__exact='a').count()
-
     num_authors = Author.objects.count()
 
     context = {
@@ -22,3 +20,13 @@ def index(request):
     }
 
     return render(request, 'index.html', context=context)
+
+from django.views import generic
+
+class BookListView(generic.ListView):
+    model = Book
+    paginate_by = 10
+
+
+class BookDetailView(generic.DetailView):
+    model = Book
