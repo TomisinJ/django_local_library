@@ -1,3 +1,4 @@
+import os
 """
 Django settings for locallibrary project.
 
@@ -54,7 +55,7 @@ ROOT_URLCONF = 'locallibrary.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -132,3 +133,7 @@ INSTALLED_APPS = [
     # Add our new application
     'catalog.apps.CatalogConfig', # This object was created for us in /catalog/apps.py
 ]
+
+LOGIN_REDIRECT_URL = '/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
